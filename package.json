@@ -1,0 +1,23 @@
+{
+  "name": "mango-social-network",
+  "version": "1.0.0",
+  "description": "api driven social network using mongo db",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garrettWinter/mango-social-network.git"
+  },
+  "author": "Garrett Winter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garrettWinter/mango-social-network/issues"
+  },
+  "homepage": "https://github.com/garrettWinter/mango-social-network#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.1"
+  }
+}
