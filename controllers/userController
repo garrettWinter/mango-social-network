@@ -51,8 +51,8 @@ deleteUser(req, res) {
     !user
       ? res
           .status(404)
-          .json({ message: 'Video created but no user with this id!' })
-      : res.json({ message: 'Video successfully deleted!' })
+          .json({ message: 'No User found with this id!' })
+      : res.json({ message: 'User successfully deleted!' })
   )
   .catch((err) => res.status(500).json(err));
 

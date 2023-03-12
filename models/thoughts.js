@@ -1,46 +1,36 @@
 const { Schema, model } = require('mongoose');
 
-const thoughtSchema = new Schema(
-    {
-        toughtText: String, //Needs to be required and limited between 1 and 280 chars
-        createAt: Date, //Needs to be set by default to the current timestamp..... Need to use a getter to format the timestamp on query..... This isnt done here right, but in the controller?
-        username: String, // Needs to be required and this is the user that created the through
-        reactions: {
-                /*
-                NEEDS TO BE A SUBDOCUMENT
-
-                **Reaction** (SCHEMA ONLY)
-
-                * `reactionId`
-                * Use Mongoose's ObjectId data type
-                * Default value is set to a new ObjectId
-
-                * `reactionBody`
-                * String
-                * Required
-                * 280 character maximum
-
-                * `username`
-                * String
-                * Required
-
-                * `createdAt`
-                * Date
-                * Set default value to the current timestamp
-                * Use a getter method to format the timestamp on query
-
-                */
-        }
-
-    },
-    {
-        toJSON: {
-            virtuals: true,
+const reactionSchema = new Schema({
+    /*
+            * `reactionId`
+            * Use Mongoose's ObjectId data type
+            * Default value is set to a new ObjectId
+    */
+    reactionBody: {type: String, required: true, min: 1, max: 280},
+    username: {type: String, rquired: true}, // Reaction Creator
+    createdAt: {type: Date, default: Date.now},
+    
+    });
+    
+    const thoughtSchema = new Schema({
+        toughtText: { type: String, required: true, min: 1, max: 280 },
+        createAt: { type: Date, default: Date.now },
+        username: { type: String, required: true }, //Thought creator
+        reactions: [reactionSchema],
+},
+{
+    toJSON: {
+        virtuals: true,
         },
-        id: true, // Need to confirm if this will be true. Perhaps for the virtual
+    id: true, // Need to confirm if this will be true. Perhaps for the virtual
     }
-)
+);
 
-const Thought = model('thought', userSchema);
+thoughtSchema.virtual('reactionCount').get(function(){
+    return this.reactions.length;
+});
+
+
+const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;
