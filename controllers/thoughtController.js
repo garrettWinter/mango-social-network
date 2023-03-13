@@ -74,15 +74,35 @@ deleteThought(req, res) {
         .catch((err) => res.status(500).json(err));
 },
 
-/*
+
     
     
-    **`/api/thoughts/:thoughtId/reactions`**
-    
-    * `POST` to create a reaction stored in a single thought's `reactions` array field
-    newReaction
-    * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
-    deleteReaction
-*/
+//Full route path is /api/thoughts/:thoughtId/reactions (CREATE)
+newReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No Thought found with this id!' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
+
+
+
+// //Full route path is /api/thoughts/:thoughtId/reactions/:reactionId (DELETE)
+// router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
+
+
+//     * `POST` to create a reaction stored in a single thought's `reactions` array field
+//     newReaction
+//     * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
+//     deleteReaction
+
 
 };
