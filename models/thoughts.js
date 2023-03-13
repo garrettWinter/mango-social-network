@@ -13,7 +13,7 @@ const reactionSchema = new Schema({
     });
     
     const thoughtSchema = new Schema({
-        toughtText: { type: String, required: true, min: 1, max: 280 },
+        thoughtText: { type: String, required: true, min: 1, max: 280 },
         createAt: { type: Date, default: Date.now },
         username: { type: String, required: true }, //Thought creator
         reactions: [reactionSchema],

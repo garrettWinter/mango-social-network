@@ -47,7 +47,7 @@ updateThought(req, res) {
 
 //Delete a thought
 deleteThought(req, res) {
-    Thought.findOneAndRemove({ _id: req.parms.thoughtId })
+    Thought.findOneAndRemove({ _id: req.params.thoughtId })
     .then ((thought) =>
         !thought
             ? res
