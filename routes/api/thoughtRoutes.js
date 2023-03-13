@@ -5,20 +5,20 @@ getSingleThought,
 createThought,
 updateThought,
 deleteThought,
-newReaction,
-deleteReaction,
+// newReaction,
+// deleteReaction,
 } = require('../../controllers/thoughtController');
 
 //Full route path is /api/thoughts
-router.route('/'.get(getThoughts).post(createThought));
+router.route('/').get(getThoughts).post(createThought);
 
 //Full route path is /api/thoughts/:thoughtId
-router.route('/:thoughtId'.get(getSingleThought).put(updateThought).delete(deleteThought));
+router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(deleteThought);
 
-//Full route path is /api/thoughts/:thoughtId/reactions
-router.route('/:thoughtId/reactions'.get(newReaction));
+// //Full route path is /api/thoughts/:thoughtId/reactions
+// router.route('/:thoughtId/reactions').get(newReaction);
 
-//Full route path is /api/thoughts/:thoughtId/reactions/:reactionId
-router.route('/:thoughtId/reactions/:reactionId'.delete(deleteReaction));
+// //Full route path is /api/thoughts/:thoughtId/reactions/:reactionId
+// router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
 
 module.exports = router;
