@@ -1,27 +1,34 @@
 const { Schema, model, Types } = require('mongoose');
 
+const dayjs = require('dayjs');
+
+function formatDate() {
+    return dayjs().format('MM/DD/YYYY h:mm A')
+  }
+
 const reactionSchema = new Schema({
     reactionId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId(),
       },
     reactionBody: {type: String, required: true, maxlength: 280},
-    username: {type: String, rquired: true}, // Reaction Creator
-    createdAt: {type: Date, default: Date.now},
-    
-    });
+    username: {type: String, rquired: true},
+    createAt: { type: Date, default: Date.now },
+    },
+    { _id: false});
     
     const thoughtSchema = new Schema({
         thoughtText: { type: String, required: true, maxlength: 280 },
         createAt: { type: Date, default: Date.now },
-        username: { type: String, required: true }, //Thought creator
+        username: { type: String, required: true },
         reactions: [reactionSchema],
 },
 {
     toJSON: {
         virtuals: true,
+        getters: true,
         },
-    id: false, // Need to confirm if this will be true. Perhaps for the virtual
+    id: false,
     }
 );
 
