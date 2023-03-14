@@ -38,7 +38,6 @@ createThought(req, res) {
           : res.json('Thought has been created')
       )
       .catch((err) => {
-        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -56,7 +55,6 @@ updateThought(req, res) {
         : res.json(thought)
         )
         .catch((err) => {
-            console.log(err);
             res.status(500).json(err);
         })
 },
