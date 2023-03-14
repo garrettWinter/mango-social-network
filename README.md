@@ -45,7 +45,8 @@ Below a screenshot of the application:
   - ![Mango-Social-Network](https://garrettwinter.github.io/mango-social-network/public/assets/images/Mango-Social-Network.png)
 
 Below is a link to a demo of the application:
-    - https://garrettwinter.github.io/mango-social-network/public/assets/media/Mango-Social-Network-DEMO.webm
+
+- https://garrettwinter.github.io/mango-social-network/public/assets/media/Mango-Social-Network-DEMO.webm
 
 ## License
 
