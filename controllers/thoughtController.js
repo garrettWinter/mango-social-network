@@ -72,9 +72,6 @@ deleteThought(req, res) {
         .catch((err) => res.status(500).json(err));
 },
 
-
-    
-    
 //Full route path is /api/thoughts/:thoughtId/reactions
 newReaction(req, res) {
     Thought.findOneAndUpdate(

@@ -2,6 +2,7 @@ const { Schema, model, Types } = require('mongoose');
 
 const dayjs = require('dayjs');
 
+// Function to be called in the getter to format the datetime stamp
 function formatDate(createdAt) {
     return dayjs(createdAt).format('MM/DD/YYYY h:mm A')
 }
@@ -16,9 +17,11 @@ const reactionSchema = new Schema({
     createdAt: { type: Date, default: Date.now, get: formatDate },
 },
     {
+        //Setting _id to false so it will no show in the document, as this is the reactionId
         _id: false,
         toJSON: {
             virtuals: true,
+            //getters is set to true to enable json getters so the timestamp can be modified in the api response.
             getters: true,
         },
     });
@@ -32,6 +35,7 @@ const thoughtSchema = new Schema({
     {
         toJSON: {
             virtuals: true,
+            //getters is set to true to enable json getters so the timestamp can be modified in the api response.
             getters: true,
         },
         id: false,
